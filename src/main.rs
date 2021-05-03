@@ -1,19 +1,17 @@
-enum Type {
-    Int(i64),
-    Float(f64),
-    Boolean(bool)
-}
-
-fn print_type(t: Type) {
-    match t {
-        Type::Int(i) => println!("type is integer {}", i),
-        Type::Float(_f) => println!("type is float {}", _f),
-        Type::Boolean(_b) => println!("type is bool"),
+fn main() {
+    for i in 1..10 {
+        print_only_if_even_number(i)
     }
 }
 
-fn main() {
-    print_type(Type::Int(4));
-    print_type(Type::Boolean(false));
-    print_type(Type::Float(4.0));
+fn print_only_if_even_number(n:u32) -> () {
+    match maybe_number(n) {
+        Some(n) => println!("even number: {}", n),
+        None => println!("odd number!")
+    }
+}
+
+fn maybe_number(n: u32) -> Option<u32> {
+    if n % 2 != 0 { return None }
+    Some(n)
 }
