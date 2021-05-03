@@ -1,17 +1,27 @@
+
+#[derive(Debug)]
+enum Error {
+    Overflow,
+    Zero
+}
+
+fn double(n: u32) -> Result<u32, Error> {
+    if n == 0 {
+        return Err(Error::Zero)
+    }
+    if n > (u32::MAX / 2) {
+        return Err(Error::Overflow)
+    }
+    Ok(n)
+}
+
 fn main() {
-    for i in 1..10 {
-        print_only_if_even_number(i)
-    }
-}
+    let array = [1, u32::MAX, 0];
 
-fn print_only_if_even_number(n:u32) -> () {
-    match maybe_number(n) {
-        Some(n) => println!("even number: {}", n),
-        None => println!("odd number!")
+    for n in array.iter() {
+        if let Ok(x) = double(*n - 2) {
+            println!("result with n {}, x {}", n, x);
+        }
     }
-}
 
-fn maybe_number(n: u32) -> Option<u32> {
-    if n % 2 != 0 { return None }
-    Some(n)
 }
