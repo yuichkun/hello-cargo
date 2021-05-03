@@ -23,6 +23,10 @@ impl Sensor for TemperatureSensor {
     }
 }
 
+fn print_sensor_value(sensor: impl Sensor) {
+    println!("sensor value {}", sensor.read());
+}
+
 fn main() {
     let ls = LightSensor {
         value: 1
@@ -30,10 +34,7 @@ fn main() {
     let ts = TemperatureSensor {
         value: 3.5
     };
-
-    let mut res: u32 = ls.read();
-    println!("res {}",res);
-    res = ts.read();
-    println!("res {}",res);
+    print_sensor_value(ls);
+    print_sensor_value(ts);
 
 }
