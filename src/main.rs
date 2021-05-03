@@ -1,31 +1,19 @@
-struct Sensor {
-    active: bool,
-    latest: u32,
+enum Type {
+    Int(i64),
+    Float(f64),
+    Boolean(bool)
 }
 
-impl Sensor {
-    fn new() -> Sensor {
-        Sensor {
-            active: false,
-            latest: 0
-        }
-    }
-
-    fn read(&self) -> u32 {
-        self.latest
-    }
-    fn init(&mut self) {
-        self.active = true;
-        self.latest = 42;
+fn print_type(t: Type) {
+    match t {
+        Type::Int(i) => println!("type is integer {}", i),
+        Type::Float(_f) => println!("type is float {}", _f),
+        Type::Boolean(_b) => println!("type is bool"),
     }
 }
-
 
 fn main() {
-    let mut sensor = Sensor::new();
-    sensor.init();
-    println!("active = {}, latest ={}", sensor.active, sensor.read());
-    sensor.active = false;
-    sensor.latest = 32;
-    println!("active = {}, latest ={}", sensor.active, sensor.read());
+    print_type(Type::Int(4));
+    print_type(Type::Boolean(false));
+    print_type(Type::Float(4.0));
 }
